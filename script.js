@@ -455,6 +455,42 @@ function populateSongs() {
     });
 }
 
+function stopOtherAudio(activeAudio) {
+    if (backgroundAudio && !backgroundAudio.paused) {
+        backgroundAudio.pause();
+        backgroundAudio.currentTime = 0;
+    }
+
+    if (!songsContainer) return;
+    const songAudios = songsContainer.querySelectorAll('audio');
+    songAudios.forEach((audioEl) => {
+        if (audioEl === activeAudio) return;
+        audioEl.pause();
+        audioEl.currentTime = 0;
+        const card = audioEl.closest('.song-card');
+        if (card) {
+            card.classList.remove('active');
+        }
+        const btn = card ? card.querySelector('.play-btn') : null;
+        if (btn) {
+            btn.classList.remove('playing');
+        }
+        const bar = card ? card.querySelector('.song-progress-bar') : null;
+        if (bar) {
+            bar.style.width = '0%';
+        }
+        const currentTimeEl = card ? card.querySelector('.current-time') : null;
+        if (currentTimeEl) {
+            currentTimeEl.textContent = '0:00';
+        }
+    });
+
+    if (currentAudio && currentAudio !== activeAudio) {
+        currentAudio = null;
+        currentPlayBtn = null;
+    }
+}
+
 function togglePlayPause(audio, playBtn, songCard, progressBar) {
     if (currentAudio === audio && !audio.paused) {
         audio.pause();
@@ -462,16 +498,9 @@ function togglePlayPause(audio, playBtn, songCard, progressBar) {
         songCard.classList.remove('active');
         return;
     }
-    
-    if (currentAudio && currentAudio !== audio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        if (currentPlayBtn) {
-            currentPlayBtn.classList.remove('playing');
-            currentPlayBtn.closest('.song-card').classList.remove('active');
-        }
-    }
-    
+
+    stopOtherAudio(audio);
+
     audio.play();
     playBtn.classList.add('playing');
     songCard.classList.add('active');
@@ -756,7 +785,7 @@ function openImageModal(src, altText) {
 function maybeStartBackground() {
     if (hasStartedBackground) return;
     backgroundAudio = new Audio(encodeURI("Songs/Selena Gomez & ZAYN - Tonight and Always.mp3"));
-    backgroundAudio.loop = true;
+    backgroundAudio.loop = false;
     backgroundAudio.volume = 0.35;
     const playPromise = backgroundAudio.play();
     if (playPromise && playPromise.catch) {
