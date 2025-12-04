@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    
+    <!-- Google Fonts - English and Hebrew friendly fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Ctext y='50'%20font-size='50'%3E%F0%9F%92%96%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Floating decorations (balloons and confetti) -->
+    <div class="decorations" id="decorations"></div>
+
+    <!-- ==================== PAGE 1: ENVELOPE & LETTER ==================== -->
+    <section id="envelope-page" class="page active">
+        <div class="envelope-container">
+            <!-- The envelope wrapper -->
+            <div class="envelope-wrapper" id="envelope-wrapper">
+                <!-- Envelope back -->
+                <div class="envelope">
+                    <!-- Envelope flap (top triangle) -->
+                    <div class="envelope-flap"></div>
+                    
+                    <!-- The letter inside the envelope -->
+                    <div class="letter" id="letter">
+                        <div class="letter-content">
+                            <!-- Hebrew letter text will be typed here -->
+                            <p class="letter-text" id="letter-text"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Envelope front (bottom part that covers the letter) -->
+                    <div class="envelope-front"></div>
+                    <!-- Wax seal -->
+                    <div class="envelope-seal" aria-hidden="true"></div>
+                </div>
+            </div>
+            
+            <!-- Instruction text -->
+            <p class="instruction" id="instruction">Hover to peek, click to reveal the note</p>
+            
+            <!-- Continue button (hidden initially) -->
+            <button class="continue-btn" id="continue-btn">Continue to Memories &rarr;</button>
+        </div>
+    </section>
+
+    <!-- ==================== PAGE 2: MEMORIES VIEW ==================== -->
+    <section id="memories-page" class="page">
+        <!-- Main heading -->
+        <header class="memories-header">
+            <h1 class="memories-title">Memories</h1>
+            <p class="memories-subtitle">A collection of our beautiful moments together</p>
+        </header>
+
+        <div class="memories-content">
+            
+            <!-- ========== PHOTOS SECTION ========== -->
+            <div class="section photos-section" id="photos-section">
+                <h2 class="section-title">Photos</h2>
+                <div class="photos-grid" id="photos-grid">
+                    <!-- Photos will be dynamically inserted here from JavaScript -->
+                    <!-- To add your own photos, edit the 'photos' array in script.js -->
+                </div>
+            </div>
+
+            <!-- ========== SONGS SECTION ========== -->
+            <div class="section songs-section" id="songs-section">
+                <h2 class="section-title">Songs</h2>
+                <div class="songs-container" id="songs-container">
+                    <!-- Song cards will be dynamically inserted here from JavaScript -->
+                    <!-- To add your own songs, edit the 'songs' array in script.js -->
+                </div>
+            </div>
+
+            <!-- ========== TIMELINE SECTION ========== -->
+            <div class="section timeline-section" id="timeline-section">
+                <h2 class="section-title">Our University Timeline</h2>
+                <div class="timeline" id="timeline">
+                    <!-- Timeline items will be dynamically inserted here from JavaScript -->
+                </div>
+            </div>
+
+            <!-- ========== THINGS YOU LIKE SECTION ========== -->
+            <div class="section likes-section" id="likes-section">
+                <h2 class="section-title">Things You Like</h2>
+                <div class="likes-layout">
+                    <div class="tree-container">
+                        <div id="christmas-tree" class="christmas-tree" aria-label="Decorated holiday tree"></div>
+                    </div>
+                    <div class="likes-grid" id="likes-grid">
+                        <!-- Like cards will be dynamically inserted here from JavaScript -->
+                        <!-- To add your own items, edit the 'thingsYouLike' array in script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== FUNNY MOMENTS SECTION ========== -->
+            <div class="section funny-section" id="funny-section">
+                <h2 class="section-title">Funny Moments</h2>
+                <p class="section-subtitle">Add your favorite clips or photos here.</p>
+                <div class="funny-grid" id="funny-grid">
+                    <!-- Funny moments will be rendered from script.js (images or YouTube embeds) -->
+                </div>
+                <div class="funny-quote">
+                    <p>Always, when you are feeling low, <strong>hold on to the days</strong> you laughed, the people you met, and the moments you <strong>grew</strong>. Remember the times you made real progress and <strong>refused to give up.</strong></p>
+                    <p>Those moments aren’t just memories—they are <strong>proof of who you are</strong>. They are reminders that even when things are hard, you are capable of showing that <strong>beautiful smile of yours</strong> to the whole world, and <strong>succeeding in everything</strong>, no matter how hard it is.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Back to letter button -->
+        <button class="back-btn" id="back-btn">&larr; Back to Letter</button>
+    </section>
+
+    <!-- Image modal -->
+    <div id="image-modal" class="image-modal" aria-hidden="true">
+        <div class="image-modal-content">
+            <button class="image-modal-close" aria-label="Close image">&times;</button>
+            <img id="image-modal-img" alt="Expanded view">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
